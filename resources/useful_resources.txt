@@ -1,0 +1,3 @@
+Jena Model:
+
+https://www.ibm.com/developerworks/library/j-jena/index.html
