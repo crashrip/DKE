@@ -4,5 +4,5 @@
 <properties version="1.0">
   <comment>jena-spatial system properties</comment>
   <entry key="org.apache.jena.query.spatial.version">3.4.0</entry>
-  <entry key="org.apache.jena.query.spatial.datetime">2017-10-29T07:49:31+0000</entry>
+  <entry key="org.apache.jena.query.spatial.datetime">2017-12-07T10:43:18+0000</entry>
 </properties>

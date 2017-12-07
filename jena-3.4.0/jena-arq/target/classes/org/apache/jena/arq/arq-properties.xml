@@ -4,5 +4,5 @@
 <properties version="1.0">
   <comment>ARQ System Properties</comment>
   <entry key="org.apache.jena.arq.version">3.4.0</entry>
-  <entry key="org.apache.jena.arq.build.datetime">2017-10-29T07:49:23+0000</entry>
+  <entry key="org.apache.jena.arq.build.datetime">2017-12-07T10:43:09+0000</entry>
 </properties>
