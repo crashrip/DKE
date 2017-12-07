@@ -1,0 +1,3 @@
+https://semanticwebrecipes.wordpress.com/2014/07/09/up-and-running-with-jena-in-eclipse/
+
+https://semanticwebrecipes.wordpress.com/2014/07/17/fuseki-it-really-is-that-easy/
