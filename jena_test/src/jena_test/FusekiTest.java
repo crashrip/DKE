@@ -1,5 +1,6 @@
 package jena_test;
 
+import java.util.LinkedList;
 import java.util.UUID;
 
 import org.apache.jena.query.*;
@@ -7,6 +8,7 @@ import org.apache.jena.rdf.model.*;
 import org.apache.jena.update.*;
 
 import input.UniversityModel;
+import jena_test.Reader.RDFhelper;
  
 /**
  * Example connection to Fuseki. For this to work, you need to start a local
@@ -19,26 +21,24 @@ public class FusekiTest {
 	    return
 	            "PREFIX dc: <http://purl.org/dc/elements/1.1/>"
 	            + "INSERT DATA"
-	            + "{ <http://university/%s>    dc:title    \"A new book\" ;"
-	            + "                         dc:creator  \"A.N.Other\" ." + "}   ";
+	            + "{<"+subject+"> dc:"+predicate+"\""+object+"\"}";
    }
  
     public static void main(String[] args) {
     	
-    	Model model = UniversityModel.getModel();
+    	Reader r = new Reader();
+    	// read from file
+    	r.readFile("C:\\Users\\Alexander\\Desktop\\Neues Textdokument.txt");
     	
-    	String s = null;
-    	String p = null;
-    	String o = null;
-    	
-        //Add a new book to the collection
-        String id = UUID.randomUUID().toString();
-        System.out.println(String.format("Adding %s", id));
-        
-        UpdateProcessor upp = UpdateExecutionFactory.createRemote(
-                UpdateFactory.create(String.format(createTemplate(s, p, o), id)), 
-                "http://localhost:3030/ds/update");
-        upp.execute();
+    	LinkedList<RDFhelper> rdfList = r.getTriples();
+    	// start update into DB 
+    	rdfList.forEach(s ->{ 
+    		
+    		UpdateProcessor upp = UpdateExecutionFactory.createRemote(
+                    UpdateFactory.create(String.format(createTemplate(s.getSubject(),s.getPredicate(),s.getObject()))), 
+                    "http://localhost:3030/ds/update");
+            upp.execute();
+    	});
         
         //Query the collection, dump output
         QueryExecution qe = QueryExecutionFactory.sparqlService(
