@@ -49,6 +49,7 @@ public class Reader {
 				// 44 == ','
 				if(c == 13 || c == 10){ // 13 und 10 Absatz
 					cnt = 0; // set cnt to subject
+					System.out.println(c+"\n");
 					if (predicate.length()!= 0){ // if subject not empty create new rdfhelper object
 					this.rdfList.add(new RDFhelper(subject.toString(),predicate.toString(),object.toString()));
 					subject = new StringBuilder();
@@ -59,6 +60,7 @@ public class Reader {
 				} else {
 					if(c == 44){ // = Beistrich
 						// reset cnt 
+						System.out.println(c+"\n");
 						cnt++;
 						if(cnt == 3){ // reset cnt and create rdf helper object
 							cnt = 0; 
@@ -72,15 +74,20 @@ public class Reader {
 					// fill according StringBuilder with chars
 					switch(cnt){
 					case 0: subject.append((char)c);
+					System.out.print((char)c);
 					break;
 					case 1: predicate.append((char)c);
+					System.out.print((char)c);
 					break;
 					case 2: object.append((char)c);
+					System.out.print((char)c);
 					break;
 					}
 				}
 				}
 				}
+			this.rdfList.add(new RDFhelper(subject.toString(),predicate.toString(),object.toString()));
+			System.out.println(c+"\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
